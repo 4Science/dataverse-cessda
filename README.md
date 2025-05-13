@@ -1,4 +1,4 @@
-## SuperDaDa Script for Dataverse Compliance
+## SuperDaDa Script for Dataverse 6
 
 This repository is a fork of gdcc/dataverse-cessda, containing the SuperDaDa script for ensuring Dataverse DDI push compliance with CESSDA specifications.
 
