@@ -120,6 +120,12 @@ xpaths=(
 
 			echo "/codeBook/stdyDscr/stdyInfo/subject/topcClas vocab attribute was successfully added or was already present: " $(date)
 
+			#'./@agency' is mandatory in /ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:prodStmt/ddi:grantNo
+			if [ -z "$(grep -oPm1 "(?<=<grantNo>)[^<]+" export_ddi.cached)" ]
+				then
+				xmlstarlet ed -O --inplace --subnode "/codeBook/stdyDscr/citation/prodStmt/grantNo[not(@agency)]" --type attr -n agency -v ./@agency export_ddi.cached export_oai_ddi.cached
+				fi	
+
 			# Here we fetch the value present in the <distDate> element which appears in docDscr/citation/distStmt
 
 			dateDataset=( $( grep -oPm1 "(?<=<distDate>)[^<]+" export_ddi.cached ) )
